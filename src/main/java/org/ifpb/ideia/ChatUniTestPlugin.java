@@ -21,6 +21,14 @@ public class ChatUniTestPlugin implements Plugin<Project> {
 
         project.getTasks().register("chatunitest.project", ChatUniTestProjectTask.class, baseConfig);
 
+        project.getTasks().register("chatunitest.class", ChatUniTestClassTask.class, task -> {
+            baseConfig.execute(task);
+
+            if (project.hasProperty("selectClass")) {
+                task.setSelectClass(Objects.requireNonNull(project.property("selectClass")).toString());
+            }
+        });
+
         project.getTasks().register("chatunitest.method", ChatUniTestMethodTask.class, task -> {
             baseConfig.execute(task);
 

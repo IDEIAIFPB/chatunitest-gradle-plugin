@@ -2,7 +2,21 @@
 
 ## Running Steps
 
-### 1. Configure `gradle.build`
+### 1. Build
+
+First, you need to build the plugin itself using the following command:
+
+```bash
+./gradlew build
+```
+
+After successfully building the plugin code, publish it to your local maven repository:
+
+```bash
+./gradlew publishToMavenLocal
+```
+
+### 2. Configure `gradle.build`
 
 Add the chatunitest-gradle-plugin configuration to the `gradle.build` file in the project for which you want to generate unit tests, and add parameters as needed:
 ```gradle
@@ -37,7 +51,7 @@ repositories {
 }
 ```
 
-### 2. Add the following dependency to your `gradle.build`
+### 3. Add the following dependency to your `gradle.build`
 
 Similarly, add the dependency in the `gradle.build` of the project for which you want to generate unit tests:
 ```gradle
@@ -57,8 +71,13 @@ After you correctly configure the project and compile it using `./gradlew build`
 ./gradlew chatunitest.method -PselectMethod=Calculator#add --info
 ```
 
+- Generate unit tests for a target class:
+```bash
+./gradlew chatunitest.class -PselectClass=Calculator --info
+```
+
 - Generate unit tests for the entire project:
 ```bash
-./gradlew chatunitest.project
+./gradlew chatunitest.project --info
 ```
 
