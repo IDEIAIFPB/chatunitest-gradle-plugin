@@ -1,4 +1,4 @@
-package org.ifpb.ideia;
+package org.ifpb.ideia.task;
 
 import lombok.Getter;
 import lombok.Setter;

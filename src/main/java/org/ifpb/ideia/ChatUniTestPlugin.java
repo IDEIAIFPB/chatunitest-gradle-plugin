@@ -5,6 +5,10 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.ifpb.ideia.adapter.MavenProjectAdapter;
 import org.ifpb.ideia.extension.ChatUniTestExtension;
+import org.ifpb.ideia.task.ChatUniTestBaseTask;
+import org.ifpb.ideia.task.ChatUniTestClassTask;
+import org.ifpb.ideia.task.ChatUniTestMethodTask;
+import org.ifpb.ideia.task.ChatUniTestProjectTask;
 
 import java.util.Objects;
 
