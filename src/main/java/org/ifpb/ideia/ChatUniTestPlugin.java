@@ -5,10 +5,7 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.ifpb.ideia.adapter.MavenProjectAdapter;
 import org.ifpb.ideia.extension.ChatUniTestExtension;
-import org.ifpb.ideia.task.ChatUniTestBaseTask;
-import org.ifpb.ideia.task.ChatUniTestClassTask;
-import org.ifpb.ideia.task.ChatUniTestMethodTask;
-import org.ifpb.ideia.task.ChatUniTestProjectTask;
+import org.ifpb.ideia.task.*;
 
 import java.util.Objects;
 
@@ -24,6 +21,8 @@ public class ChatUniTestPlugin implements Plugin<Project> {
         };
 
         project.getTasks().register("chatunitest.project", ChatUniTestProjectTask.class, baseConfig);
+        project.getTasks().register("chatunitest.copy", ChatUniTestCopyTask.class, baseConfig);
+        project.getTasks().register("chatunitest.restore", ChatUniTestRestoreTask.class, baseConfig);
 
         project.getTasks().register("chatunitest.class", ChatUniTestClassTask.class, task -> {
             baseConfig.execute(task);
