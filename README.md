@@ -54,11 +54,11 @@ After you correctly configure the project and compile it using `./gradlew build`
 
 - Generate unit tests for a target method:
 ```bash
-./gradlew method -PselectMethod=Calculator#add --info
+./gradlew chatunitest.method -PselectMethod=Calculator#add --info
 ```
 
 - Generate unit tests for the entire project:
 ```bash
-./gradlew project
+./gradlew chatunitest.project
 ```
 
