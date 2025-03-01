@@ -18,7 +18,7 @@ public class ChatUniTestMethodTask extends ChatUniTestProjectTask {
     public String selectMethod;
 
     @TaskAction
-    public void runMethodTest() {
+    public void run() {
         this.init();
         if (this.selectMethod == null || !this.selectMethod.contains("#")) {
             throw new IllegalArgumentException("Invalid selectMethod format. Expected 'ClassName#MethodName'.");
@@ -30,7 +30,6 @@ public class ChatUniTestMethodTask extends ChatUniTestProjectTask {
         try {
             new Task(this.config, new RunnerImpl(this.config)).startMethodTask(className, methodName);
         } catch (Exception e) {
-            this.getGradleLogger().info(Arrays.toString(e.getStackTrace()));
             throw new RuntimeException(e);
         }
     }

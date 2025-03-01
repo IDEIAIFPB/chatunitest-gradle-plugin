@@ -146,7 +146,7 @@ public class ChatUniTestProjectTask extends DefaultTask {
     private GradleLogger gradleLogger = new GradleLogger(getLogger());
 
     @TaskAction
-    public void runProjectTest() {
+    public void run() {
         init();
         this.gradleLogger.info("==========================");
         this.gradleLogger.info("[" + this.phaseType + "] Generating tests for project " + this.mavenProject.getBasedir().getName() + " ...");
