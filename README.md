@@ -1,4 +1,4 @@
-# :mega: ChatUnitest Maven Plugin
+# :mega: ChatUnitest Gradle Plugin
 
 ## Running Steps
 
