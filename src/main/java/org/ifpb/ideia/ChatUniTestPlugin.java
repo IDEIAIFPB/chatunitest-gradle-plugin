@@ -23,6 +23,7 @@ public class ChatUniTestPlugin implements Plugin<Project> {
         project.getTasks().register("chatunitest.project", ChatUniTestProjectTask.class, baseConfig);
         project.getTasks().register("chatunitest.copy", ChatUniTestCopyTask.class, baseConfig);
         project.getTasks().register("chatunitest.restore", ChatUniTestRestoreTask.class, baseConfig);
+        project.getTasks().register("chatunitest.clean", ChatUniTestCleanTask.class, baseConfig);
 
         project.getTasks().register("chatunitest.class", ChatUniTestClassTask.class, task -> {
             baseConfig.execute(task);
