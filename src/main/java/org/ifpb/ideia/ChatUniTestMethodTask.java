@@ -8,11 +8,9 @@ import org.gradle.api.tasks.TaskAction;
 import zju.cst.aces.api.Task;
 import zju.cst.aces.api.impl.RunnerImpl;
 
-import java.util.Arrays;
-
 @Getter
 @Setter
-public class ChatUniTestMethodTask extends ChatUniTestProjectTask {
+public class ChatUniTestMethodTask extends ChatUniTestBaseTask {
     @Input
     @Optional
     public String selectMethod;
@@ -27,6 +25,12 @@ public class ChatUniTestMethodTask extends ChatUniTestProjectTask {
         String[] parts = this.selectMethod.split("#");
         String className = parts[0];
         String methodName = parts[1];
+
+        this.getGradleLogger().info("==========================");
+        this.getGradleLogger().info(
+                "[" + this.extension.getPhaseType() + "] Generating tests for method " +
+                        methodName + "in class" + className + "..."
+        );
         try {
             new Task(this.config, new RunnerImpl(this.config)).startMethodTask(className, methodName);
         } catch (Exception e) {
