@@ -10,6 +10,8 @@ import org.gradle.api.tasks.bundling.Jar;
 
 import java.io.File;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MavenProjectAdapter {
     /**
@@ -32,10 +34,13 @@ public class MavenProjectAdapter {
                 .getSrcDirs()
                 .stream()
                 .map(File::getAbsolutePath)
-                .toList();
+                .collect(Collectors.toList());
 
         build.setSourceDirectory(sourcePaths.get(0));
-        build.setOutputDirectory(mainSourceSet.getOutput().getClassesDirs().getAsPath());
+        Set<File> classDirs = mainSourceSet.getOutput().getClassesDirs().getFiles();
+        File firstDir = classDirs.iterator().next();
+        build.setOutputDirectory(firstDir.getAbsolutePath());
+
         build.setDirectory(gradleProject.getLayout().getBuildDirectory().getAsFileTree().getAsPath());
 
         String baseName = gradleProject.getTasks().named("jar", Jar.class).get().getArchiveBaseName().get();
