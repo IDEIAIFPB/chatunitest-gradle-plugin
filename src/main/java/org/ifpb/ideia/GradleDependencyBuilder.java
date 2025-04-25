@@ -4,6 +4,8 @@ import org.gradle.api.Project;
 import org.gradle.api.artifacts.ResolvedArtifact;
 import org.gradle.api.artifacts.ResolvedConfiguration;
 import org.gradle.api.artifacts.ResolvedDependency;
+import org.gradle.api.tasks.SourceSet;
+import org.gradle.api.tasks.SourceSetContainer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,6 +20,13 @@ public class GradleDependencyBuilder {
      */
     public static List<String> listClassPaths(Project project) {
         List<String> classPaths = new ArrayList<>();
+
+        SourceSetContainer sourceSets = project.getExtensions().getByType(SourceSetContainer.class);
+        SourceSet mainSourceSet = sourceSets.getByName(SourceSet.MAIN_SOURCE_SET_NAME);
+
+        Set<File> classDirs = mainSourceSet.getOutput().getClassesDirs().getFiles();
+        File firstDir = classDirs.iterator().next();
+        classPaths.add(0,firstDir.getAbsolutePath());
 
         File jarFile = project.file("build/libs/" + project.getName() + ".jar");
         if (jarFile.exists()) {
