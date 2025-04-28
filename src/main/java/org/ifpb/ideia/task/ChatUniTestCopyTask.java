@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.gradle.api.tasks.TaskAction;
 import zju.cst.aces.util.TestCompiler;
+import java.io.File;
 
 @Getter
 @Setter
@@ -13,9 +14,12 @@ public class ChatUniTestCopyTask extends ChatUniTestBaseTask {
         this.init();
         this.getGradleLogger().info("\n==========================\n[ChatUniTest] Copying tests ...");
 
+        TestCompiler.srcTestFolder = new File(config.getProject().getBasedir(), "src/test/java");
+        TestCompiler.testBackupFolder = new File(config.getProject().getBasedir(), "src/backup");
+
         try {
             TestCompiler compiler = new TestCompiler(config.getTestOutput(), config.getCompileOutputPath(),
-                    config.getProject().getBasedir().toPath().resolve("target"), config.getClassPaths());
+                    config.getProject().getBasedir().toPath().resolve("build"), config.getClassPaths());
             compiler.copyAndBackupTestFolder();
             compiler.copyAndBackupCompiledTest();
         } catch (Exception e) {
